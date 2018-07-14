@@ -16,5 +16,10 @@ pipeline {
         echo 'junit test'
       }
     }
+    stage('Deploy test') {
+      steps {
+        sh 'uptime'
+      }
+    }
   }
 }
