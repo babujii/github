@@ -2,8 +2,17 @@ pipeline {
   agent any
   stages {
     stage('build stage') {
-      steps {
-        build(job: 'uptime', propagate: true, wait: true, quietPeriod: 2)
+      parallel {
+        stage('build stage') {
+          steps {
+            build(job: 'uptime', propagate: true, wait: true, quietPeriod: 2)
+          }
+        }
+        stage('') {
+          steps {
+            sh 'date'
+          }
+        }
       }
     }
     stage('Test stage') {
